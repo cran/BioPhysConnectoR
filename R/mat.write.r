@@ -19,13 +19,13 @@ mat.write<-function(mat,file.name,ij=FALSE,sym=FALSE,sparse=FALSE,formatted=TRUE
 		}
 		# if the output should be formatted (e.g. for gnuplot use)
 		if(formatted){
-			ind<-mat[1,1]
+			ind<-mat2[1,1]
 			for(i in 1:dim(mat2)[1]){
-				cat(mat2[i,],"\n",sep=" ",file=file.name,append=TRUE)
 				if(ind!=mat2[i,1]){
 					cat("\n",file=file.name,append=TRUE)
-					ind<-mat[i,1]
+					ind<-mat2[i,1]
 				}
+				cat(mat2[i,],"\n",sep=" ",file=file.name,append=TRUE)
 			}
 		}else{
 			write.table(mat2,file=file.name,quote=FALSE,row.names=FALSE,col.names=FALSE)
