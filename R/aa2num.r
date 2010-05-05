@@ -11,7 +11,7 @@
 #  http://www.kay-hamacher.de
 #############################################
 
-aa2num<-function(seq,offset=1,code=0:19,verbose=TRUE){
+aa2num<-function(seq,offset=1,code=0:19,verbose=FALSE){
     # ### Begin of the original bio3d function "aa123" as provided in bio3d 1.0-6 under GPL version2 by Grant, Rodrigues, ElSawy, McCammon, Caves, (2006) {Bioinformatics} 22, 2695--2696.
 	aa123<-function(aa){
 

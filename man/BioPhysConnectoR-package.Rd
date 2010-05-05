@@ -12,12 +12,12 @@ Functions to investigate the relation between biomolecular structures, their int
 \details{
 \tabular{ll}{
 Package: \tab BioPhysConnectoR\cr
-Version: \tab 1.6-1\cr
-Date: \tab 2010-10-02\cr
+Version: \tab 1.6-3\cr
+Date: \tab 2010-05-05\cr
 Depends: \tab R (>= 2.8.0), snow, matrixcalc\cr
 License: \tab GPL 2 \cr
-Packaged: \tab 2010-10-02 14:00:11 UTC;weil\cr
-Built: \tab R 2.10.1; x86_64-suse-linux-gnu; 2010-10-02 11:53:23 UTC; unix\cr
+Packaged: \tab 2010-05-05 14:01:01 UTC;weil\cr
+Built: \tab R 2.10.1; x86_64-suse-linux-gnu; 2010-05-05 14:01:01 UTC; unix\cr
 }
 
 Index:
@@ -43,6 +43,8 @@ lbpc                      List the Functions of the BioPhysConnectoR Package
 mat.norm                  Normalisation of a Matrix
 mat.read                  Read Matrix Data from a File
 mat.sort                  Sort a Matrix According to a Specified Column
+mat.write                 Writes Matrix Data to a File
+read.fasta                Reads aligned or un-aligned sequences from a FASTA format file
 scpcp                     Self-Consistent Pair Contact Probability
                           Approximation
 show.code                 Output of the Amino Acid Coding Scheme
@@ -60,6 +62,7 @@ Maintainer: Franziska Hoffgaard <hoffgaard@bio.tu-darmstadt.de>
 }
 
 \references{
+Hoffgaard, Weil, Hamacher (2010) \emph{BMC Bioinformatics} 11, 199. \cr
 Hamacher (2006) \emph{Journal of Chemical Theory and Computation} 2, 873--878.\cr
 Hamacher (2008) \emph{Gene} 422, 30--36.\cr
 Hamacher (2009) \emph{Eur. Biophys. J.},  in press.\cr

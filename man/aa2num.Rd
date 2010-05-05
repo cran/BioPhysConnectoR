@@ -5,7 +5,7 @@
 A sequence containing standard amino acids is converted into a sequence of integer values. An offset for the code can be specified.
 }
 \usage{
-aa2num(seq, offset = 1, code = 0:19, verbose = TRUE)
+aa2num(seq, offset = 1, code = 0:19, verbose = FALSE)
 }
 \arguments{
 \item{seq}{string vector containing a sequence of standard amino acids}

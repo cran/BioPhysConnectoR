@@ -117,7 +117,7 @@ sims<-function(pdb,alignment,mj1=NULL,mj2=NULL,mj.avg=FALSE,alpha=82,cuts=169,pa
 	}
 
 	H<-get.entropy(aln,bool=bool,gapchar=gapchar)
-	MI<-get.mie(aln,method=mimethod,gapchar=gapchar,upper=TRUE)
+	MI<-get.mie(aln,method=mimethod,gapchar=gapchar)
 
 	seq<-p$caseq
 	n<-p$lca

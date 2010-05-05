@@ -16,7 +16,7 @@ build.interact<-function(cseq,mj1,mj2=mj1,d,alpha=82){
 
 	if(!is.numeric(cseq)){
 		if(is.character(cseq)){
-			cseq<-aa2num(cseq,0)
+			cseq<-aa2num(cseq,0,verbose=FALSE)
 			}
 			else{
 				stop("Wrong Argument Type.\n")

@@ -7,17 +7,13 @@
     is computed. Considering the gap problem there are four ways to compute it.
 }
 \usage{
-get.mie(aln, method = "ORMI", gapchar = "NOGAPCHAR", upper = TRUE,
-verbose = FALSE, nullmod = 0, seed=13)
+get.mie(aln, method = "ORMI", gapchar = NULL, nullmod = NULL)
 }
 \arguments{
-  \item{aln}{ character matrix, containing an alignment. Each row of the alignment represents an aligned sequence }
-  \item{method}{method, that is used for the computation (see details)}
-  \item{gapchar}{characters to be omitted in the computations}
-  \item{upper}{ bool, if TRUE the alignment letters are in upper case}
-  \item{verbose}{bool, if TRUE messages are printed}
-  \item{nullmod}{integer, number of shuffle runs to be done for the nullmodel computation}
-  \item{seed}{integer, sets seed for RNG}
+  \item{aln}{ matrix, of which the mutual information will be computed }
+  \item{method}{ method, that is used for the computation (see details) }
+  \item{gapchar}{ symbols of the input matrix that should be handled as gaps. These symbols are omitted in the computations (see details) }
+  \item{nullmod}{ integer, specifying how many shuffle runs should be performed }
 }
 \details{
 Methods: The mutual information (MI) is computed as follows:
@@ -49,9 +45,7 @@ seqc<-unlist(strsplit("PQITLWQRPLVTIKIGGQL",split=""))
 a<-matrix(c(seqa,seqb,seqc),nrow=3,byrow=TRUE)
 mi<-get.mie(a)
 mi2<-get.mie(a, method = "SUMI", gapchar = "-")
-\dontrun{
 mi_null<-get.mie(a,nullmod=100)
 mi2_null<-get.mie(a, method = "SUMI", gapchar = "-",nullmod=100)
-}
 }
 \keyword{utilities}
