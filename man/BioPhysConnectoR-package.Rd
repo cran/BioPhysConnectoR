@@ -12,12 +12,12 @@ Functions to investigate the relation between biomolecular structures, their int
 \details{
 \tabular{ll}{
 Package: \tab BioPhysConnectoR\cr
-Version: \tab 1.6-4\cr
+Version: \tab 1.6-5\cr
 Date: \tab 2010-05-05\cr
 Depends: \tab R (>= 2.8.0), snow, matrixcalc\cr
 License: \tab GPL 2 \cr
-Packaged: \tab 2010-05-05 14:01:01 UTC;weil\cr
-Built: \tab R 2.10.1; x86_64-suse-linux-gnu; 2010-05-05 14:01:01 UTC; unix\cr
+Packaged: \tab 2010-22-07 14:26:01 UTC;weil\cr
+Built: \tab R 2.10.1; x86_64-suse-linux-gnu; 2010-22-07 14:26:01 UTC; unix\cr
 }
 
 Index:

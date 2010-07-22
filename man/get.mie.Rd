@@ -7,13 +7,14 @@
     is computed. Considering the gap problem there are four ways to compute it.
 }
 \usage{
-get.mie(aln, method = "ORMI", gapchar = NULL, nullmod = NULL)
+get.mie(aln, method = "ORMI", gapchar = NULL, nullmod = NULL, logMI = FALSE)
 }
 \arguments{
   \item{aln}{ matrix of which the mutual information will be computed }
   \item{method}{ method, that is used for the computation (see details) }
   \item{gapchar}{ symbols of the input matrix that should be handled as gaps. These symbols are omitted in the computations (see details) }
   \item{nullmod}{ integer specifying how many shuffle runs should be performed }
+  \item{logMI}{ boolean, if TRUE the log(MI) will be calculated, default is FALSE}
 }
 \details{
 Methods: The mutual information (MI) is computed as follows:

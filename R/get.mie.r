@@ -13,8 +13,10 @@
 
 
 
-get.mie<-function(aln,method="ORMI",gapchar=NULL,nullmod=NULL){
+get.mie<-function(aln,method="ORMI",gapchar=NULL,nullmod=NULL,logMI=FALSE){
 
+  logMI<-ifelse(logMI,1,0)
+  
   transcode<-function(a,gc){
     aa<-unique(as.vector(a))
     gc<-gc[gc%in%aa]
@@ -40,16 +42,16 @@ get.mie<-function(aln,method="ORMI",gapchar=NULL,nullmod=NULL){
   # Initialisierung der an C zu übergebenen Vektoren und Matrizen
   MI_avg<-matrix(0,n,n) 
   if(method=="ORMI"){
-    out<-.C("computeORMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+    out<-.C("computeORMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
   }
   if(method=="DEMI"){
-    out<-.C("computeDEMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+    out<-.C("computeDEMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
   }
   if(method=="SUMI"){
-    out<-.C("computeSUMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+    out<-.C("computeSUMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
   }
   if(method=="ESMI"){
-    out<-.C("computeESMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+    out<-.C("computeESMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
   }
 
   out<-matrix(out$MI_avg,ncol=n)
@@ -69,22 +71,22 @@ get.mie<-function(aln,method="ORMI",gapchar=NULL,nullmod=NULL){
       }
       seqs<-as.vector(seqs)
       if(method=="ORMI"){
-	out<-.C("computeORMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+	out<-.C("computeORMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
 	mi<-mi+matrix(out$MI_avg,ncol=n)
 	mi2<-mi2+(matrix(out$MI_avg,ncol=n)^2) 
       }
       if(method=="DEMI"){
-	out<-.C("computeDEMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+	out<-.C("computeDEMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
 	mi<-mi+matrix(out$MI_avg,ncol=n)
 	mi2<-mi2+(matrix(out$MI_avg,ncol=n)^2)
       }
       if(method=="SUMI"){
-	out<-.C("computeSUMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+	out<-.C("computeSUMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
 	mi<-mi+matrix(out$MI_avg,ncol=n)
 	mi2<-mi2+(matrix(out$MI_avg,ncol=n)^2)
       }
       if(method=="ESMI"){
-	out<-.C("computeESMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),PACKAGE="BioPhysConnectoR")
+	out<-.C("computeESMI",seqs=as.integer(seqs),n=as.integer(n),s=as.integer(s),MI_avg=as.double(MI_avg),gap_chars=as.integer(gap_chars),alphabetlength=as.integer(alphabetlength),logMI=as.integer(logMI),PACKAGE="BioPhysConnectoR")
 	mi<-mi+matrix(out$MI_avg,ncol=n)
 	mi2<-mi2+(matrix(out$MI_avg,ncol=n)^2)
       }

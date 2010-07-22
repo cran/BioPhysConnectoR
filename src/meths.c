@@ -18,7 +18,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength){
+void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength, int *logMI){
   int i,j,l;
   register int k;
   int a,b;
@@ -123,7 +123,7 @@ void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
 	for(l=0;l<gc;l++){
 	  const int df = two_point_fs[a];//k + l*22];
 	  if(df>0){
-	    mi += (double)(df)/(double)(Scxy) * (LOG[df] - LScxy - LOG[one_point_fs[k+i*al]] + LScy - LOG[one_point_fs[l+j*al]] + LScx);
+	     mi += (double)(df)/(double)(Scxy) * (LOG[df] - LScxy - LOG[one_point_fs[k+i*al]] + LScy - LOG[one_point_fs[l+j*al]] + LScx);
 	    coo += df;
 	  }
 	  a += al;
@@ -134,10 +134,14 @@ void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
       }else{
 	coo = 1;
       }
+
       if(i!=j){
-	MI_avg[j + i*N] = mi * (double)(coo);
+	if(*logMI==1){
+	  MI_avg[j + i*N] = log(mi) * (double)(coo);
+	}else{
+	  MI_avg[j + i*N] = mi * (double)(coo);
+	}
       }
-      MI_avg[i + j*N] = mi * (double)(coo);
     }
   }
   free(zero);
@@ -146,7 +150,7 @@ void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
   free(LOG);
 }
 
-void computeSUMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength){
+void computeSUMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength, int *logMI){
   int i,j,l;
   register int k;
   int a,b;
@@ -239,10 +243,19 @@ void computeSUMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
 	Hx += (double)(x) * (LOG[x] - LScxy);
 	Hy += (double)(y) * (LOG[y] - LScxy);
       }
-      Hx /= (double)(Scxy);
-      Hy /= (double)(Scxy);
-      Hxy /= (double)(Scxy);
-      mi = Hxy-Hx-Hy;
+      //if we find no pair without gaps
+      if(Scxy==0){
+	mi=0;
+      }else{
+        Hx /= (double)(Scxy);
+        Hy /= (double)(Scxy);
+        Hxy /= (double)(Scxy);
+        if(*logMI==1){
+	  mi = log(Hxy-Hx-Hy);
+        }else{
+	  mi = Hxy-Hx-Hy;
+        }
+      }
       if(i!=j){
 	MI_avg[j + i*N] = mi;
       }
@@ -254,7 +267,7 @@ void computeSUMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
   free(LOG);
 }
 
-void computeDEMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength){
+void computeDEMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int *alphabetlength, int *logMI){
   int i,j,l;
   register int k;
   int a,b;
@@ -364,8 +377,11 @@ void computeDEMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
       if(Scxy>0){
 	Hxy /= (double)(Scxy);
       }
-      mi = Hxy-Hx-Hy;
-
+      if(*logMI==1){
+	mi = log(Hxy-Hx-Hy);
+      }else{
+	mi = Hxy-Hx-Hy;
+      }
       if(i!=j){
 	MI_avg[j + i*N] = mi;
       }
@@ -377,7 +393,7 @@ void computeDEMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
   free(LOG);
 }
 
-void computeORMI(int *seqs, int *n, int *s, double *MI_avg, int *alphabetlength){
+void computeORMI(int *seqs, int *n, int *s, double *MI_avg, int *alphabetlength, int *logMI){
   int i,j,l; 
   register int k;
   int a,b;
@@ -458,10 +474,18 @@ void computeORMI(int *seqs, int *n, int *s, double *MI_avg, int *alphabetlength)
       MI_avg[i + j*N] += mi;
     }
   }
-
-  for(i=0;i<N;i++)
-    for(j=0;j<N;j++)
+  
+  // MI for frequencies ...
+  for(i=0;i<N;i++){
+    for(j=0;j<N;j++){
       MI_avg[i+N*j] *= oneoverDS;
+      // if logMI 1 the MI value is computed as log of base e
+      if(*logMI==1){
+	MI_avg[i+N*j] = log(MI_avg[i+N*j]);
+      }
+    }
+  }
+
 
   free(zero);
   free(two_point_fs);
