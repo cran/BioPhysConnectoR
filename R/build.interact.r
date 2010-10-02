@@ -34,7 +34,9 @@ build.interact<-function(cseq,mj1,mj2=mj1,d,alpha=82){
 	chains<-cumsum(d)
 	nchains<-length(chains)
 	covind<-1:(n-1)
-	covind<-covind[-chains[-nchains]]
+	if(nchains>1){
+	  covind<-covind[-chains[-nchains]]
+	}
 	diag(interaction.mat[,-1])[covind]<-diag(interaction.mat[-1,])[covind]<-alpha
 	diag(interaction.mat)<-0
 	return(interaction.mat)
