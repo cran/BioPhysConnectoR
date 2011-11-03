@@ -159,17 +159,20 @@ simc<-function(pdb,mj1=NULL,mj2=NULL,mj.avg=FALSE,cl=NULL,alpha=82,cuts=169,path
 		tqq<-lapply(ncl,fun)
 	}
 
-	##formatting to matrix
-	colmat<-length(tqq[[1]][[1]])
-	qq<-matrix(unlist(tqq),ncol=colmat,byrow=TRUE)
+    if(frob){
+	    ##formatting to matrix
+	    colmat<-length(tqq[[1]][[1]])
+	    qq<-matrix(unlist(tqq),ncol=colmat,byrow=TRUE)
+    }
 
 	if(is.null(file)){
 		file<-file.name
 	}
 
 	if(frob){
-			write.table(qq,quote=FALSE,row.names=FALSE,col.names=FALSE,file=paste(path,"/results_",file,".out",sep=""))
-		}
-	return(qq)
-	}
+		write.table(qq,quote=FALSE,row.names=FALSE,col.names=FALSE,file=paste(path,"/results_",file,".out",sep=""))
+        
+    	return(qq)
+    }
+}
 
