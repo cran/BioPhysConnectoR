@@ -1,5 +1,5 @@
 Package: BioPhysConnectoR
-Version: 1.6-7
+Version: 1.6-8
 Date: 2011-11-3
 Title: BioPhysConnectoR
 Author: Franziska Hoffgaard <hoffgaard@bio.tu-darmstadt.de>, with
@@ -12,6 +12,6 @@ Description: Utilities and functions to investigate the relation
         evolutionary information revealed in sequence alignments of
         these molecules.
 License: GPL-2
-Packaged: 2011-03-11 15:57:23 UTC; weil
+Packaged: 2012-09-17 14:05:55 UTC; fh
 Repository: CRAN
-Date/Publication: 2011-03-12 09:05:09
+Date/Publication: 2012-09-17 14:20:25

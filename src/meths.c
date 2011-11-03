@@ -135,13 +135,17 @@ void computeESMI(int *seqs, int *n, int *s, double *MI_avg, int *gap_chars, int 
 	coo = 1;
       }
 
-      if(i!=j){
-	if(*logMI==1){
-	  MI_avg[j + i*N] = log(mi) * (double)(coo);
-	}else{
-	  MI_avg[j + i*N] = mi * (double)(coo);
-	}
+      double lmi = 0.0;
+      if(*logMI==1){
+	lmi = log(mi) * (double)(coo);
+      }else{
+        lmi = mi * (double)(coo);
       }
+
+      if(i!=j){
+	MI_avg[j + i*N] = lmi;
+      }
+      MI_avg[i + j*N] = lmi;
     }
   }
   free(zero);

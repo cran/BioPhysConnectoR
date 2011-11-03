@@ -155,7 +155,7 @@ scpcp<-function(T,R,cm,pstart=0.5,maxiter=2000,chains=NULL,maxtol=1e-11,file=NUL
 	for(iter in 1:maxiter){
 		tol<-0
 		m<-initM(rc=rc,T2=T2,beta2=beta2,cm=cm,p=p,n=n,im=im,XI=XI)
-		B<-inverse(m)
+		B<-matrix.inverse(m)
 		f<-compute_F(T=T,R=R,n=n,rc=rc,cm=cm,p=p,im=im,m=m)
 		e<-f$E
 		det<-f$det

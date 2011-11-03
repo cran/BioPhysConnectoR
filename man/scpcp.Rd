@@ -47,11 +47,13 @@ Franziska Hoffgaard
 }
 
 \examples{
+\dontrun{
 p<-extractPDB(system.file("1KZK.pdb", package = "BioPhysConnectoR"))
 cm<-build.contacts(n = p$lca, xyz = p$coords, cuts = 169)$cm
 chains<-p$chains
 im<-build.interact(cseq=p$caseq,d=chains,mj1=matrix(0.05,20,20),alpha=1)
 res<-scpcp(cm = cm, maxtol = 10^(-10), T = 5, R = 0.8, im = im, 
 	   maxiter = 10, pstart = 0.5, chains=chains)
+}
 }
 \keyword{utilities}
