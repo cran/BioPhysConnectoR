@@ -5,7 +5,7 @@
 #
 #   (C) by F. Hoffgaard, P. Weil, and K. Hamacher in 2009.
 #
-#  hoffgaard(AT)bio.tu-darmstadt.de
+#  keul(AT)bio.tu-darmstadt.de
 #
 #
 #  http://www.kay-hamacher.de
@@ -13,6 +13,6 @@
 
 
 
-.First.lib <- function(lib, pkg) {
+.onLoad <- function (lib, pkg) {
   library.dynam("BioPhysConnectoR", pkg, lib)
 }
