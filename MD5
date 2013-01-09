@@ -1,6 +1,6 @@
-0a8c04d06a2341feca530f837cb87b86 *DESCRIPTION
+d2e5cc7e35d77a0f25d74f8365989760 *DESCRIPTION
 cfa2beb8206abef35f25ba7e4c1e83de *NAMESPACE
-d383f647eae2d71183e9b72a98291e0d *R/aa2num.r
+95bd149e502016dd25cb1be33de1185d *R/aa2num.r
 c14a4cbe65b03f48b950786b5d2622c0 *R/build.contacts.r
 506436d10969a5d897cf272eefdbaa9a *R/build.hess.r
 355aa8781afdb9cec63e7e51b251c429 *R/build.interact.r
@@ -34,7 +34,7 @@ a4c3d824175a4a0b330623070500c5b9 *R/show.code.r
 4e09c5eee8c3fbcd11fce7ff118f2143 *inst/mj1.txt
 aed362567cad634a11b06a43fc9b7367 *inst/mj2.txt
 da64275641a8792a467dadd385c7a610 *man/BioPhysConnectoR-package.Rd
-31a6891cf62dd19cf2d856f11c5a731e *man/aa2num.Rd
+0decc37ded116e0af87b110b7fc70828 *man/aa2num.Rd
 c05f15c0f65d81ed7518d84ed29c696f *man/build.contacts.Rd
 1944604812a90290f15b1b9f717d7d4b *man/build.hess.Rd
 6851c90f4c297575edd8be688239e76b *man/build.interact.Rd
